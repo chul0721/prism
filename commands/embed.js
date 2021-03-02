@@ -8,12 +8,15 @@ module.exports = {
     "임베드에 씌워진 공지를 보내요.",
   usage: ",embed <공지 내용>",
   run: async (client, message, args) => {
+    let inc = ops.noticeChannel;
+    console.log(ops)
     if (!message.member.hasPermission("MANAGE_MESSAGES")) {
         return message.reply("관리자 권한이 없는 사람은 이 명령어를 실행할 수 없습니다.").then(m => m.delete(5000));
     }
+    if (inc == null || undefined || "") return message.channel.send("공지를 보낼 채널을 `,채널설정 [채널ID]`를 통해 설정해주세요.")
     if (!args[1]) return message.channel.send("공지 내용을 입력해주세요.");
     const embed = new Discord.MessageEmbed()
-      .setTitle("공지를 보낼까요?")
+      .setTitle("공지를 임베드로 보낼까요?")
       .setColor("#303135")
       .addField("공지 내용", `\`\`\`\n${args.slice(1).join(" ")}\n\`\`\``)
       .setFooter(message.author.tag, message.author.displayAvatarURL())
@@ -31,10 +34,8 @@ module.exports = {
     });
     collector.on("end", async (collected) => {
       if (collected.first().emoji.name == "✅") {
-        client.channels.cache
-          .get(ops.noticeChannel)
-          .send({
-            embed: new Discord.MessageEmbed()
+        client.channels.cache.get(inc).send("",{
+          embed: new Discord.MessageEmbed()
               .setTitle(`${message.guild.name} 공지`)
               .setDescription(args.slice(1).join(" "))
               .setColor("#303135")
