@@ -7,9 +7,9 @@ module.exports = {
     "임베드가 씌워지지 않은 말을 공지로 보내요.",
   usage: ",say <#채널> <공지 내용>",
   run: async (client, message, args) => {
-    let inc = args[1];
-    if (!message.member.hasPermission("MANAGE_MESSAGES")) {
-        return message.reply("관리자 권한이 없는 사람은 이 명령어를 실행할 수 없습니다.").then(m => m.delete(5000));
+    let inc = args[1].replace('<#','').replace('>','');
+    if (!(message.member.roles.cache.has(816462860879134731))){
+      return message.reply("관리자 권한이 없는 사람은 이 명령어를 실행할 수 없습니다.").then(m => m.delete(5000));
     }
     if (inc == null || undefined || "") return message.channel.send("공지를 보낼 채널을 알려주세요.")
     if (!args[2]) return message.channel.send("공지 내용을 입력해주세요.");
