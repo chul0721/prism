@@ -32,7 +32,6 @@ module.exports = {
       if (collected.first().emoji.name == "✅") {
         client.channels.cache.get(inc).send("",{
           embed: new Discord.MessageEmbed()
-              .setTitle(`${message.guild.name} 공지`)
               .setDescription(args.slice(2).join(" "))
               .setColor("#303135")
           });
