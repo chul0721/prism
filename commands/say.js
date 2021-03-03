@@ -9,16 +9,16 @@ module.exports = {
   run: async (client, message, args) => {
     let inc = args[1].replace('<#','').replace('>','');
     if (!message.member.roles.cache.has("698618859480940604")){
-      return message.reply("관리자 권한이 없는 사람은 이 명령어를 실행할 수 없습니다.").then(m => m.delete(5000));
+      return message.reply("관리자 권한이 없는 사람은 이 명령어를 실행할 수 없습니다.")
     }
     if (!message.member.roles.cache.has("700654413857161266")){
-      return message.reply("관리자 권한이 없는 사람은 이 명령어를 실행할 수 없습니다.").then(m => m.delete(5000));
+      return message.reply("관리자 권한이 없는 사람은 이 명령어를 실행할 수 없습니다.")
     }
     if (!message.member.roles.cache.has("704003304992145441")){
-      return message.reply("관리자 권한이 없는 사람은 이 명령어를 실행할 수 없습니다.").then(m => m.delete(5000));
+      return message.reply("관리자 권한이 없는 사람은 이 명령어를 실행할 수 없습니다.")
     }
     if (!message.member.roles.cache.has("816462860879134731")){
-      return message.reply("관리자 권한이 없는 사람은 이 명령어를 실행할 수 없습니다.").then(m => m.delete(5000));
+      return message.reply("관리자 권한이 없는 사람은 이 명령어를 실행할 수 없습니다.")
     }
     if (inc == null || undefined || "") return message.channel.send("공지를 보낼 채널을 알려주세요.")
     if (!args[2]) return message.channel.send("공지 내용을 입력해주세요.");
