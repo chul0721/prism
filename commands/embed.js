@@ -1,5 +1,4 @@
 const Discord = require("discord.js");
-const ops = require('../info.json');
 
 module.exports = {
   name: "임베드",
@@ -10,7 +9,7 @@ module.exports = {
   run: async (client, message, args) => {
     let inc = ops.noticeChannel;
     console.log(ops)
-    if (!message.member.hasPermission("MANAGE_MESSAGES")) {
+    if (!(message.member.roles.cache.has(816462860879134731))){
         return message.reply("관리자 권한이 없는 사람은 이 명령어를 실행할 수 없습니다.").then(m => m.delete(5000));
     }
     if (inc == null || undefined || "") return message.channel.send("공지를 보낼 채널을 `,채널설정 [채널ID]`를 통해 설정해주세요.")
@@ -19,8 +18,6 @@ module.exports = {
       .setTitle("공지를 임베드로 보낼까요?")
       .setColor("#303135")
       .addField("공지 내용", `\`\`\`\n${args.slice(1).join(" ")}\n\`\`\``)
-      .setFooter(message.author.tag, message.author.displayAvatarURL())
-      .setTimestamp();
     let m = await message.channel.send({
       embed: embed,
     });
@@ -39,10 +36,8 @@ module.exports = {
               .setTitle(`${message.guild.name} 공지`)
               .setDescription(args.slice(1).join(" "))
               .setColor("#303135")
-              .setFooter(message.author.tag, message.author.displayAvatarURL())
-              .setTimestamp(),
           });
-        embed.setTitle("공지를 보냈어요.").setColor("#303135").setTimestamp();
+        embed.setTitle("공지를 보냈어요.").setColor("#303135")
         await m.edit({
           embed: embed,
         });
@@ -50,7 +45,6 @@ module.exports = {
         embed
           .setTitle("공지 전송이 취소되었어요.")
           .setColor("#303135")
-          .setTimestamp();
         m.edit({
           embed: embed,
         });
