@@ -8,7 +8,7 @@ module.exports = {
   usage: ",say <#채널> <공지 내용>",
   run: async (client, message, args) => {
     let inc = args[1].replace('<#','').replace('>','');
-    if (!(message.member.roles.cache.has("698618859480940604")) || !(message.member.roles.cache.has("700654413857161266")) || !(message.member.roles.cache.has("704003304992145441")) || !(message.member.roles.cache.has("816462860879134731"))){
+    if ((!(message.member.roles.cache.has("698618859480940604"))) || (!(message.member.roles.cache.has("700654413857161266"))) || (!(message.member.roles.cache.has("704003304992145441"))) || (!(message.member.roles.cache.has("816462860879134731")))){
       return message.reply("관리자 권한이 없는 사람은 이 명령어를 실행할 수 없습니다.").then(m => m.delete(5000));
     }
     if (inc == null || undefined || "") return message.channel.send("공지를 보낼 채널을 알려주세요.")
